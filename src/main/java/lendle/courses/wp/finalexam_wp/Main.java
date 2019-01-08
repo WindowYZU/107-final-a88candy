@@ -5,9 +5,19 @@
  */
 package lendle.courses.wp.finalexam_wp;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -106,7 +116,36 @@ public class Main extends javax.swing.JFrame {
         DefaultListModel model = (DefaultListModel) this.jList1.getModel();
         if (model.contains(title)) {
             //Q1: 開啟 message dialog （10%）
+             JFrame frame=new JFrame();
+            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            frame.setLayout(new BorderLayout());
             
+            JDesktopPane desktop=new JDesktopPane();
+            frame.setContentPane(desktop);
+            
+            JInternalFrame iframe = new JInternalFrame();
+            frame.getContentPane().add(iframe);
+            
+            JMenuBar jMenuBar=new JMenuBar();
+            frame.setJMenuBar(jMenuBar);
+            JMenu test=new JMenu("test");
+            jMenuBar.add(test);
+            JMenuItem jMenuItem=new JMenuItem("add");
+            test.add(jMenuItem);
+            jMenuItem.addActionListener(new ActionListener() {
+                 @Override
+                 public void actionPerformed(ActionEvent e) {
+                     JInternalFrame iframe=new JInternalFrame("internal",true,true,true,true);
+                     frame.getContentPane().add(iframe);
+                     iframe.setSize(300,300);
+                     iframe.setVisible(true);
+                     
+                     
+                 }
+             });
+                        
+            jDesktopPane1.add(title, frame);
+            jDesktopPane1.getBorder();
             ////////////////////
             return;
         }
@@ -114,6 +153,9 @@ public class Main extends javax.swing.JFrame {
         model.addElement(title);
         //Q2: 建立 TaskFrame（等同於 JInternalFrame）
         //加到 jDesktopPane1 (20%)
+        JDesktopPane desktop=new JDesktopPane();
+        jDesktopPane1.add(this);
+        
         
         ///////////////////////////////////////
     }//GEN-LAST:event_buttonNewActionPerformed
@@ -133,6 +175,8 @@ public class Main extends javax.swing.JFrame {
             //Q3: 建立 TaskFrame（等同於 JInternalFrame）
             //設定 noteTitle, noteContent
             //加到 jDesktopPane1 (20%)
+            JDesktopPane desktop=new JDesktopPane();
+            jDesktopPane1.add(this);
             
             //////////////////////////////////////////
         }
